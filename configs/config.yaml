@@ -1,0 +1,33 @@
+model:
+  _name_: lipreading
+  backbone_type: shufflenet
+  relu_type: prelu
+  tcn_dropout: 0.2
+  tcn_dwpw: false
+  tcn_kernel_size: [3]
+  tcn_num_layers: 5
+  tcn_width_mult: 2
+  width_mult: 1.0
+
+train:
+  name: LRS2 # name of experiment
+  from_checkpoint: false # continue training from checkpoint
+  from_pretrained: true # load pretrained model
+  save_dir: none # directory to save model
+  ckpt_path: checkpoints/...
+  pretrained_path: 
+  learning_rate: 0.0001
+
+dataset:
+  root: data
+  video_dir: datareal/video
+  mouthroi_dir: datareal/mouth_crops
+  video_val_dir: null
+  mouthroi_val_dir: null
+  batch_size: 16
+  num_workers: 4
+  
+
+distributed:
+  dist_backend: nccl
+  dist_url: tcp://localhost:54321
